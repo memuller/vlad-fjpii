@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/vlad-jpii/version', __FILE__)
+require File.expand_path('../lib/vlad/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Matheus E. Muller"]
@@ -8,15 +8,15 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Builds and symlinks config files, public folders, and aggregates common recipes.}
   gem.homepage      = ""
 
-  s.add_dependency("vlad", ["~> 2.2.4"])
-  s.add_dependency("hoe")
-  s.add_dependecy("vlad-git")
+  gem.add_dependency("vlad", ["~> 2.2.4"])
+  gem.add_dependency("hoe")
+  gem.add_dependency("vlad-git")
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "vlad-jpii"
+  gem.name          = "vlad-fjpii"
   gem.require_paths = ["lib"]
-  gem.version       = Vlad::Jpii::VERSION
+  gem.version       = Vlad::FJPII::VERSION
 
 end
