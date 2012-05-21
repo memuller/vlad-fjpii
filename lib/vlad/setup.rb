@@ -2,7 +2,7 @@ namespace :vlad do
   
   desc "Installs rake, hoe, and vlad remotelly."
   remote_task :install_gems do
-    run "gem install rake hoe vlad vlad-git vlad-extras"
+    run "gem install rake hoe vlad vlad-fjpii vlad-git vlad-extras"
   end
 
   desc "Creates config and public shared folders."
