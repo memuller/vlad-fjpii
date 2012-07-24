@@ -27,4 +27,6 @@ namespace :vlad do
     end
   end
 
+  Rake.clear_tasks('vlad:update_symlinks')
+
 end
