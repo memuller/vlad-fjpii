@@ -28,5 +28,6 @@ namespace :vlad do
   end
 
   Rake.clear_tasks('vlad:update_symlinks')
+  task :update_symlinks => [:link_config, :link_public]
 
 end
