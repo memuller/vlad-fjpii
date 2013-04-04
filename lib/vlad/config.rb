@@ -14,8 +14,12 @@ namespace :vlad do
   desc "Writes remote configuration files, based on file templates."
   remote_task :write_config => :load_config do
     config_files.each do |file|
-      key =  file.split('.')[file.split('.').size-2].split('/').last
-      sample_file = file.split('.') ; sample_file = sample_file.insert(sample_file.size-1, 'sample') * '.'
+	  if (file.split('.').size > 1) 
+        key =  file.split('.')[file.split('.').size-2].split('/').last
+        sample_file = file.split('.') ; sample_file = sample_file.insert(sample_file.size-1, 'sample') * '.'
+      else
+        sample_file = file * '.sample'      
+      end
       sample_config = IO.read(sample_file)
       config[key].each do |k, v|
         sample_config.sub! '{' + k.upcase + '}', v
