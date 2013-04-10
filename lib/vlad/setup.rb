@@ -17,6 +17,7 @@ namespace :vlad do
   remote_task :link_config => :load_config do
     config_files.each do |file|
       run %( ln -s #{shared_path}/config/#{file.split('/').last} #{current_release}/#{file} )
+      run %( chmod +r #{shared_path}/config/#{file.split('/').last} )
     end
   end
 
