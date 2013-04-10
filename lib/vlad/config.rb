@@ -3,9 +3,14 @@ namespace :vlad do
   desc "Loads deployment configuration values."
   task :load_config do
     config = {}
-    config_files.each do |file|
-      data_file = file.split('.') ; data_file[data_file.size-1] = 'yml' ; data_file = data_file * '.'
-      config_name = file.split('.')[file.split('.').size-2].split('/').last
+    config_files.each do |file|      	
+      if (file.split('.')[0] != "")
+        data_file = file.split('.') ; data_file[data_file.size-1] = 'yml' ; data_file = data_file * '.'
+        config_name = file.split('.')[file.split('.').size-2].split('/').last
+      else
+      	data_file = file + ".yml"
+      	config_name = file.split('/').last
+	  end
       config.merge! config_name => YAML.load(File.open(data_file))
     end
     set :config, config
@@ -14,11 +19,12 @@ namespace :vlad do
   desc "Writes remote configuration files, based on file templates."
   remote_task :write_config => :load_config do
     config_files.each do |file|
-	  if (file.split('.').size > 1) 
+	  if (file.split('.')[0] != "") 
         key =  file.split('.')[file.split('.').size-2].split('/').last
         sample_file = file.split('.') ; sample_file = sample_file.insert(sample_file.size-1, 'sample') * '.'
       else
-        sample_file = file * '.sample'      
+        sample_file = file + '.sample'      
+        key = file.split('/').last
       end
       sample_config = IO.read(sample_file)
       config[key].each do |k, v|
