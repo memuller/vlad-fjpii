@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Builds and symlinks config files, public folders, and aggregates common recipes.}
   gem.homepage      = ""
 
-  gem.add_dependency("vlad", ["~> 2.2.4"])
+  gem.add_dependency("vlad", ["~> 2.3.0"])
   gem.add_dependency("hoe")
   gem.add_dependency("vlad-git")
 
